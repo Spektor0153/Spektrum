@@ -1,0 +1,68 @@
+{
+  "name": "Spektrum",
+  "author": "Roman Spektor <fas-@mail.ru>",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "axios": "^0.19.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.4.1",
+    "css-loader": "^3.5.3",
+    "moment": "^2.25.3",
+    "multer": "^1.4.2",
+    "password-hash": "^1.2.2",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
+    "react-calendar": "^3.1.0",
+    "react-dom": "^16.13.1",
+    "react-dropzone": "^11.0.1",
+    "react-hot-loader": "^4.12.21",
+    "react-html-table-to-excel": "^2.0.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.5",
+    "redux-form": "^8.3.5",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "style-loader": "^1.2.1",
+    "webpack-dev-server": "^3.11.0",
+    "xml2js": "^0.4.23"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build-react": "react-scripts build",
+    "build-web": "webpack -p",
+    "watch": "webpack --watch",
+    "dev": "webpack-dev-server --config ./webpack.config.dev.js --mode development",
+    "build": "webpack -p --config ./webpack.config.js --mode production"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "webpack-cli": "^3.3.11"
+  }
+}

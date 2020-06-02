@@ -1,0 +1,15 @@
+.fonContainer {
+    background-color: white;
+}
+.mainPage_container {
+    padding-top: 90px;
+    padding-bottom: 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.mainPage_row {
+    flex: 1 1 auto;
+}

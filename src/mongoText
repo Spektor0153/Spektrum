@@ -1,0 +1,230 @@
+mongod --dbpath="C:\mongoDbData"
+
+use rssReader
+
+db.rssReader.drop()
+
+db.rssReader.insertMany([
+{ link: "https://habr.com/ru/rss/all/all/",
+name: "Habr",
+image: "https://habr.com/images/logo.png",
+web: "habr.com",
+tags: ['it','habr','programming','tech','news']
+},
+{ link: "https://3dnews.ru/news/rss/",
+name: "3dnews.ru",
+image: "https://storage.googleapis.com/site-assets/xsYmaslDHmx1_lOIUN307E7WkY6a5D9r5N9d_y9Qy7U_visual-15b9270063a",
+web: "3dnews.ru",
+tags: ['it','3dnews','programming','tech','news']
+},
+{ link: "https://xakep.ru/feed/",
+name: "xakep.ru",
+image: "https://xakep.ru/wp-content/uploads/2017/06/xakep-favicon-93x93.png",
+web: "xakep.ru",
+tags: ['it','programming','tech','news']
+},
+{ link: "https://overclockers.ru/rss/all.rss",
+name: "overclockers",
+image: "https://st.overclockers.ru/images/88x31/overclockers.gif",
+web: "overclockers.com",
+tags: ['it','programming','tech']
+},
+{ link: "http://tproger.ru/feed",
+name: "tproger",
+image: "https://tproger.ru/apple-touch-icon.png",
+web: "tproger.ru",
+tags: ['tproger','it','programming','tech','news','startups']
+},
+{ link: "http://www.mobile-review.com/rss-review.xml",
+name: "mobile-review",
+image: "https://storage.googleapis.com/site-assets/_xglE6SePeRBhUiMUv0I4sbiyIm9DelxpIoMV-m90WI_visual-15b9271472f",
+web: "mobile-review.com",
+tags: ['mobile-review','it','programming','tech','gaming']
+},
+{ link: "http://www.artlebedev.ru/news.rdf",
+name: "artlebedev",
+image: "https://storage.googleapis.com/site-assets/F1gmBt4WabIY1NtUWS8-vflvYtZsOwYcN1IhDQCDgSE_svisual-16933c55a4b",
+web: "artlebedev.ru",
+tags: ['artlebedev','design']
+},
+{ link: "http://sketchapp.rocks/feed/",
+name: "sketchapp",
+image: "https://storage.googleapis.com/site-assets/Qq4nOJZDSPtQXoIWJOQp1K26NLioQP6T5PBfwhtHV3c_visual-15b90b3b8e0",
+web: "sketchapp.me",
+tags: ['sketchapp','tech','design']
+},
+{ link: "http://www.drive.ru/export/rss.xml",
+name: "drive.ru",
+image: "http://storage.googleapis.com/site-assets/UtbNYvMluiq-pGPNZ-1965wDbilPq7K3qsx2aOB2sLY_visual-15415c3f584",
+web: "drive.ru",
+tags: ['drive','cars','auto']
+},
+{ link: "http://feeds.feedburner.com/vkusnyblog/mild",
+name: "feedburner",
+image: "https://storage.googleapis.com/site-assets/Lmng39qRDQvPsSAKJ63WvKUJO78d4udgdhucL-Sgevc_visual-16ea8141051",
+web: "feedburner.com",
+tags: ['feedburner','food','eat']
+}
+]);
+
+
+
+
+{ link: "",
+name: "itunes",
+image: "",
+web: "com",
+tags: ['']
+},
+
+
+
+https://3dnews.ru/news/rss/
+http://4pda.ru/feed/
+https://xakep.ru/feed/
+https://overclockers.ru/rss/all.rss
+http://ebanoe.it/feed/
+
+http://tproger.ru/feed
+http://www.mobile-review.com/rss-review.xml
+
+#design
+http://www.artlebedev.ru/news.rdf
+http://sketchapp.me/feed/
+
+cars
+http://www.drive.ru/export/rss.xml
+
+food
+http://feeds.feedburner.com/vkusnyblog/mild
+
+
+
+   { item: "journal", qty: 25, status: "A", size: { h: 14, w: 21, uom: "cm" }, tags: [ "blank", "red" ] },
+   { item: "notebook", qty: 50, status: "A", size: { h: 8.5, w: 11, uom: "in" }, tags: [ "red", "blank" ] },
+   { item: "paper", qty: 10, status: "D", size: { h: 8.5, w: 11, uom: "in" }, tags: [ "red", "blank", "plain" ] },
+   { item: "planner", qty: 0, status: "D", size: { h: 22.85, w: 30, uom: "cm" }, tags: [ "blank", "red" ] },
+   { item: "postcard", qty: 45, status: "A", size: { h: 10, w: 15.25, uom: "cm" }, tags: [ "blue" ] }
+]);
+
+db.rssReader.find({})
+
+
+db.rssReader.insertMany([
+{ link: "http://4pda.ru/feed/",
+name: "4pda"}])
+
+
+
+CREATE TABLE socialnetwork.`user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `passwordhash` varchar(100) DEFAULT NULL,
+  `datecreate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE(`login`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+                COLLATE=utf8_general_ci;
+
+
+
+
+
+CREATE TABLE socialNetwork.`profiles` (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_user INT NOT NULL,
+	name varchar(100) NOT null,
+	img  varchar(100),
+	status  varchar(100),
+	dateb date,
+	school varchar(100),
+	about longtext,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+CREATE TABLE socialNetwork.`posts` (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_user INT NOT NULL,
+	dateCreate date,
+	text longtext,
+	likes INT DEFAULT 0 null,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+CREATE TABLE socialnetwork.friends (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_user INT NOT NULL,
+	id_friend varchar(100) NOT NULL,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+CREATE TABLE socialnetwork.messages (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_user INT NOT NULL,
+	id_friend INT NOT NULL,
+	message LONGTEXT NOT NULL,
+	datesend DATETIME NOT NULL,
+	`read` BOOL DEFAULT false NOT NULL,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+CREATE TABLE socialnetwork.roomsUser (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_room INT NOT NULL,
+	id_user INT NOT NULL,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+CREATE TABLE socialnetwork.dialogRooms (
+	id_room INT NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (id_room)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+
+CREATE TABLE socialNetwork.`photos` (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_user INT NOT NULL,
+	text varchar(100),
+	img  varchar(100) NOT null,
+	dateCreate DATETIME,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
+
+
+
+CREATE TABLE socialNetwork.likes (
+	id INT NOT NULL AUTO_INCREMENT,
+	id_post INT NOT NULL,
+	id_user INT NOT NULL,
+	dateCreate DATETIME,
+	PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;

@@ -1,0 +1,166 @@
+.fon {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+
+}
+.post_head {
+     display: flex;
+ }
+.post_head_flex {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    margin-bottom: 15px;
+
+}
+.imgRound {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.postText_block {
+}
+.postText_block img {
+    max-width: 100%;
+}
+.userName {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00427c;
+    margin-bottom: 0px;
+}
+.datePost {
+    font-size: 12px;
+    color: #949494;
+    margin-bottom: 0px;
+}
+
+.inputMessage {
+    width: 300px;
+    border: 0px;
+    border-bottom: 1px solid darkgray;
+    border-radius: 0px;
+    box-shadow: none;
+}
+.inputMessage:focus {
+    box-shadow: none;
+}
+.flexBlock_post {
+    display: flex;
+}
+
+.rowPosts {
+    justify-content: space-between;
+}
+.postHeadTop_block {
+    border-radius: 5px 5px 0px 0px;
+    border: 1px solid lightgray;
+    background-color: white;
+    text-align: left;
+    padding: 15px 15px;
+    padding-bottom: 0px;
+    border-bottom: 0px;
+}
+.postHeadTop_button {
+    border-bottom: 2px solid #5181b8;
+    padding-bottom: 13px;
+    text-decoration: none;
+    margin-bottom: 0px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.postContainer {
+
+}
+
+.fon:first-child {
+    border-radius: 0px 0px 5px 5px;
+}
+.emptyMessage_block {
+    background-color: white;
+    border-radius: 0px 0px 5px 5px;
+    border: 1px solid lightgray;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.emptyMessage_text {
+    color: #656565;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.trashIcon {
+    color: #707070;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.trashIcon:hover {
+    opacity: 1;
+}
+.likeIcon {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Elike_outline_24%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C0H24V24H0Z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M17%2C2.9A6.43%2C6.43%2C0%2C0%2C1%2C23.4%2C9.33c0%2C3.57-1.43%2C5.36-7.45%2C10l-2.78%2C2.16a1.9%2C1.9%2C0%2C0%2C1-2.33%2C0L8.05%2C19.37C2%2C14.69.6%2C12.9.6%2C9.33A6.43%2C6.43%2C0%2C0%2C1%2C7%2C2.9a6.46%2C6.46%2C0%2C0%2C1%2C5%2C2.54A6.46%2C6.46%2C0%2C0%2C1%2C17%2C2.9ZM7%2C4.7A4.63%2C4.63%2C0%2C0%2C0%2C2.4%2C9.33c0%2C2.82%2C1.15%2C4.26%2C6.76%2C8.63l2.78%2C2.16a.1.1%2C0%2C0%2C0%2C.12%2C0L14.84%2C18c5.61-4.36%2C6.76-5.8%2C6.76-8.63A4.63%2C4.63%2C0%2C0%2C0%2C17%2C4.7c-1.56%2C0-3%2C.88-4.23%2C2.73L12%2C8.5l-.74-1.07C10%2C5.58%2C8.58%2C4.7%2C7%2C4.7Z%22%20fill%3D%22%23828a99%22%2F%3E%3C%2Fsvg%3E");
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+.likeIcon:hover {
+    opacity: 1;
+}
+.likeIconActive{
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m0%200h24v24h-24z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22m17%202.9a6.43%206.43%200%200%201%206.4%206.43c0%203.57-1.43%205.36-7.45%2010l-2.78%202.16a1.9%201.9%200%200%201%20-2.33%200l-2.79-2.12c-6.05-4.68-7.45-6.47-7.45-10.04a6.43%206.43%200%200%201%206.4-6.43%205.7%205.7%200%200%201%205%203.1%205.7%205.7%200%200%201%205-3.1z%22%20fill%3D%22%23ff3347%22%2F%3E%3C%2Fsvg%3E");
+    opacity: 1;
+}
+.likeBlock {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.likeCount {
+    font-size: 16px;
+    font-weight: 500;
+    color: #929292;
+}
+.likeCountActive {
+    color: #cc2939;
+}
+
+
+/*POPOVER*/
+.popover {
+    padding: 10px 15px;
+}
+.popoverImg {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.popoverflex {
+    display: flex;
+}
+.popoverTitle {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.clickBlockLike {
+    display: inline-block;
+}
+

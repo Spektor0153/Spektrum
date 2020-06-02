@@ -1,0 +1,57 @@
+.rssCard {
+    display: flex;
+    background-color: white;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+
+}
+.rssCard:hover {
+    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.15), inset 0 0 100px 0 white;
+    text-decoration: none;
+}
+.rssBlock {
+    margin-top: 30px;
+}
+.rssCardRow {
+    margin-bottom: 20px;
+}
+.imageRss {
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.rssName {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 7px;
+    line-height: 15px;
+}
+.rssWeb {
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 0px;
+    line-height: 15px;
+}
+.textBlockRss {
+    margin-left: 15px;
+}
+.emptySearch_rssList {
+    margin-top: 100px;
+}
+.emptyRssIcon {
+    font-size: 60px;
+    color: #929292;;
+    margin-bottom: 15px;
+}
+.emptySearch_rssList p {
+    color: #929292;
+    font-size: 16px;
+}
+.activeChanel {
+    background-color: aliceblue;
+}

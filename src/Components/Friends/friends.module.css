@@ -1,0 +1,163 @@
+.friendblock {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.friendsFon {
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.friendNav {
+    padding: 11px 10px 0px 5px;
+    background-color: #343a40;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.friend_head {
+    display: flex;
+}
+.friend_head_flex {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    margin-bottom: 0px;
+
+}
+.imgRoundFriend {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.postText_block {
+}
+.friendName {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00427c;
+    margin-bottom: 0px;
+}
+.button_block {
+    align-self: center;
+    display: flex;
+}
+.followButton {
+width: 160px;
+    background-color: #5b88bd;
+}
+.unFollowButton button {
+    width: 160px;
+    background-color: #47ab5e;
+}
+.messageButton {
+    margin-right: 20px;
+}
+.itemFriendNav  {
+    flex-grow: inherit !important;
+    flex-basis: auto !important;
+    background-color: #eaeaea;
+    border-left: 1px solid #c5c5c5;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.itemFriendNav:hover {
+    background-color: white;
+}
+.itemFriendNav:hover .navName {
+    color: #2f2f2f;
+}
+.itemFriendNav  a {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+.itemFriendLink {
+    color: #2f2f2f;
+}
+.navBadge {
+    margin-left: 10px;
+    background-color: #343a40;
+}
+.navName {
+    font-size: 15px;
+    font-weight: 500;
+    color: #696969;
+}
+.inputFriendsSearch {
+    border: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+    height: 50px;
+}
+.inputFriendsSearch:focus {
+    box-shadow: none;
+}
+
+
+
+.friendBlock_header {
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.blockFon {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 0px;
+}
+
+
+.smFriendImg {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-bottom: 1px;
+    display: inline-block;
+    text-align: center;
+}
+.smFriendName {
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.smFriendLink {
+    text-decoration: none!important;
+    color: #212529;
+}
+.smFriendContainer {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.emptyText {
+    text-align: left;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 10px;
+}
+.badge {
+    color: gray;
+    margin-left: 5px;
+}
+.friendIconCol {
+
+}
+.searchFormBlock {
+    display: flex;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    align-items: center;
+}
+.searchIcon {
+    margin-left: 20px;
+    color: #b1b1b1;
+    font-size: 19px;
+}

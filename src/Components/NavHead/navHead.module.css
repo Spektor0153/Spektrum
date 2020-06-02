@@ -1,0 +1,40 @@
+.containerNav {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rowNav {
+    width: 100%;
+}
+.imgBlock {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.dropDown {
+    align-self: center;
+}
+.userBlockFlex {
+    display: flex;
+    align-content: center;
+}
+.dropDownLink {
+    color: white;
+}
+.dropDownLink:hover {
+    color: white;
+}
+.navHeadAbsolute {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 100;
+}

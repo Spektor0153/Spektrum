@@ -1,0 +1,47 @@
+.startPage_container {
+    height: 100vh;
+    min-height: 100vh;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.startPage_row {
+    height: 100%;
+}
+
+.form_container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.card {
+    width: 100%;
+}
+.headReg {
+    text-align: left;
+    padding-left: 35px;
+    background-color: rgb(52, 58, 64);
+    color: white;
+}
+.travolta_container {
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+.travolta_zag {
+    font-size: 40px;
+    font-weight: 500;
+    color: #343a40;
+    margin-bottom: 25px;
+}
+.travolta_text {
+    font-size: 25px;
+    font-weight: 400;
+    color: #343a40;
+    margin-bottom: 100px;
+}
+.dashed  {
+    border-bottom: 3px dashed #343a40;
+    padding-bottom: 1px;
+}

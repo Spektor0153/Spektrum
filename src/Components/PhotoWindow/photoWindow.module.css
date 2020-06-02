@@ -1,0 +1,71 @@
+.thumbsContainer {
+    display: flex;
+    flexDirection: row;
+    flexWrap: wrap;
+    marginTop: 16;
+    overflow: hidden;
+}
+
+.thumb{
+    display: inline-flex;
+    borderRadius: 2;
+    border: 1px solid #eaeaea;
+    marginBottom: 8;
+    marginRight: 8;
+    width: 100px;
+    height: 100px;
+    padding: 4px;
+    boxSizing: border-box;
+}
+
+.thumbInner {
+    display: flex;
+    minWidth: 0;
+    overflow: hidden;
+}
+
+.img {
+    display: block;
+    width: auto;
+    height: 100%;
+    margin: auto;
+}
+.modalAddBody {
+background-color: white;
+}
+.modalAddHeader {
+    background: #1e1e1e;
+}
+.uploadIcon {
+    font-size: 50px;
+    color: gray;
+    margin-bottom: 10px;
+}
+.dropzone {
+    text-align: center;
+    background-color: #f8f8f8;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid #cecece;
+}
+.modalTitle {
+    color: white;
+}
+.modalAddSection {
+    margin: 20px 15px;
+}
+.sendButtonPhoto {
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+.errorDrop {
+    border: 1px solid red !important;
+}
+.errorText {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 0px;
+}

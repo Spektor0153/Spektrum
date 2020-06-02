@@ -1,0 +1,149 @@
+/*form image new*/
+/*
+img {
+    max-height: 200px;
+    margin: 0 auto;
+}
+*/
+.appContainer {
+    margin: 20px auto;
+}
+
+.clear {
+    clear: both;
+}
+
+.details,
+.title {
+    text-align: center;
+    font-size: 14px;
+}
+
+.error {
+    margin-top: 2px;
+    color: red;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 2px;
+}
+
+.hasError {
+    border: 1px solid red;
+}
+
+.imageContainer {
+    align-items: center;
+   /* display: flex;
+    width: 85%;
+    height: 80%;
+    float: left;*/
+    padding: 10px 10px;
+    text-align: center;
+}
+.imageContainer img {
+    max-width: 90%;
+    max-height: 120px;
+}
+
+.previewContainer {
+    /*height: 200px;*/
+    width: 100%;
+    /*margin-bottom: 40px;*/
+    border-radius: 5px;
+}
+
+.placeholderPreview {
+    cursor: pointer;
+    border: 1px solid #d5d5d5;
+}
+
+.placeholderPreview,
+.renderPreview {
+    text-align: center;
+    background-color: #f8f8f8;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.uploadContainer {
+    cursor: pointer;
+    height: 300px;
+}
+.uploadIcon {
+    font-size: 50px;
+    color: gray;
+    margin-bottom: 10px;
+}
+.relative {
+    position: relative;
+    margin-top: 20px;
+}
+.closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: #828080;
+    cursor: pointer;
+}
+.label {
+    text-align: left;
+    display: block;
+}
+.sendCol {
+    text-align: right;
+    margin-top: 30px;
+}
+.sendButton {
+    height: 45px;
+    font-size: 17px;
+}
+
+
+/*postForm*/
+
+.rowPosts {
+    justify-content: space-between;
+}
+.flexBlock_post {
+    display: flex;
+    align-items: center;
+}
+.imgRound {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.inputMessage {
+   /* width: 300px;*/
+    border: 0px;
+    border-bottom: 1px solid darkgray;
+    border-radius: 0px;
+    box-shadow: none;
+}
+.inputMessage:focus {
+    box-shadow: none;
+}
+.flexInput {
+    flex-grow: 1;
+}
+.sendPostButton {
+    font-size: 14px;
+}
+.photoAddIcon {
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+.photoAddIcon:hover {
+    opacity: 1;
+}

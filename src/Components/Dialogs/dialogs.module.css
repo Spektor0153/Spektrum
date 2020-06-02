@@ -1,0 +1,256 @@
+.dialogBlock {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.dialogBlock:hover {
+    background-color: #f5f7fa;
+}
+.incomingDialogBlock {
+    background-color: #f5f7fa;
+}
+.dialogFon {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 1px 0px 0px #d7d8db, 0px 0px 0px 1px #e3e4e8;
+
+}
+.messageFon {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 1px 0px 0px #d7d8db, 0px 0px 0px 1px #e3e4e8;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    position: relative;
+}
+.dialog_head {
+    display: flex;
+}
+.dialog_head_flex {
+    position: relative;
+
+}
+
+.imgRoundDialog {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 20px;
+    position: absolute;
+}
+.dialogdName {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00427c;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.button_block {
+    align-self: center;
+
+    display: flex;
+}
+.dialogMessage {
+    color: #4e5966;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 50px;
+}
+
+.dialogDate {
+    color: #777e8c;
+    font-size: 12.5px;
+    margin-bottom: 5px;
+    line-height: 14px;
+    text-align: right;
+}
+.dialogBadgeBlock {
+    text-align: right;
+    text-align: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.messageBadge {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 6px;
+    background: #5181b8;
+    border-radius: 18px;
+    line-height: 20px;
+    min-width: 21px;
+}
+
+.messageBlockProfile {
+    padding-top: 25px;
+    padding-bottom: 0px;
+    cursor: pointer;
+
+}
+.messageBlock {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cursor: pointer;
+
+}
+.imgRoundEmpty {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    margin-right: 20px;
+}
+.messagesFon {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 100px;
+    overflow-y: scroll;
+}
+.messageHeaderBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 8;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.imgRoundHead {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+}
+
+.messageFooterBlock {
+    box-shadow: 0px 1px 0px 0px #d7d8db, 0px 0px 0px 1px #e3e4e8;
+    padding:  20px 25px;
+    background: #fafbfc;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.sendMessageButton {
+    width: 100%;
+}
+.myMessage_block {
+    display: flex;
+    align-items: center;
+}
+.myMessage_imgRound {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+.dialogMyMessage {
+    color: #4e5966;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 50px;
+    width: 100%;
+}
+.dialog_rightCol {
+    margin-left: 90px;
+}
+.dialog_rightCol_top {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.dialog_rightCol_bottom {
+    position: relative;
+}
+.linkDialog {
+    text-decoration: none;
+}
+.linkDialog:hover {
+    text-decoration: none;
+}
+.linkDialog:last-child .dialogBlock {
+    border-bottom: 0px !important;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.dialogMyMessage_gray {
+    background-color: #e9edf2;
+    padding: 5px 10px;
+}
+.messageBlockTextFull {
+    color: #4e5966;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 0px;
+    line-height: 22px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color  linear 1s,   padding-left  linear 2s;
+}
+.messageBlockText {
+    color: #4e5966;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color  linear 1s,   padding-left  linear 2s;
+
+}
+.emptyBlock {
+padding: 50px;
+}
+.emptyBlockText {
+    margin-bottom: 0px;
+    font-size: 15px;
+    color: #404040;
+    font-weight: 400;
+}
+.noIcon {
+    font-size: 50px;
+    color: #adadad;
+    margin-bottom: 20px;
+}
+.leftIcon {
+    font-size: 16px;
+    margin-right: 6px;
+}
+.backLink {
+    color: #343a40;
+}
+.profileLink {
+    color: #343a40;
+    font-weight: 500;
+    font-size: 16px;
+}
+.hasError {
+    border: 1px solid red;
+}

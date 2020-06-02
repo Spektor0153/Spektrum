@@ -1,0 +1,24 @@
+.modal-content {
+    height: 100%;
+    background: #1e1e1e;
+}
+
+.modal-body {
+    padding: 0px;
+}
+.carousel.slide {
+    height: 100%;
+    display: flex;
+}
+.carousel-inner {
+    display: flex;
+    height: 100%;
+}
+.active.carousel-item {
+}
+.carousel-item{
+    height: 100%;
+    text-align: center;
+    align-items: center;
+}
+
