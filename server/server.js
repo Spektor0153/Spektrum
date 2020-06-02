@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const passwordHash = require('password-hash');
 
-const host = '192.168.1.101'
+const host = '151.248.114.72'
 const port = 3001
 
 const tokenKey = '1a2b-3c4d-5e6f-7g8h'
@@ -25,7 +25,7 @@ const tokenKey = '1a2b-3c4d-5e6f-7g8h'
 
 
 var corsOptions = {
-  origin: 'http://192.168.1.101',
+  origin: 'http://151.248.114.72',
   optionsSuccessStatus: 200
 }
 
@@ -55,8 +55,8 @@ const upload = multer({ storage: storage })
 var connection =  mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '0153',
-  database : 'socialNetwork'
+  password : '01530153',
+  database : 'socialnetwork'
 });
 
 
