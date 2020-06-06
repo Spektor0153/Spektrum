@@ -3,8 +3,21 @@
 Social Network
 
 Use: 
-Centos 6, 
-Node js,
+<ul>
+	<li>Centos 6</li>
+	<li>Node js</li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
 MariaDB,
 Express,
 Rest API,
