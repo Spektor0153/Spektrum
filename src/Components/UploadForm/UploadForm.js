@@ -100,7 +100,7 @@ class UploadImageForm extends React.Component {
                                     <label className={styles.label}>Дата рождения:</label>
                                     <Row>
                                         <Col md='3'>
-                                            <Field component="select" className="form-control" name='day'>
+                                            <Field component="select" className={`form-control ${styles.selectB}`} name='day'>
                                                 {
                                                     [...Array(31)].map((el,i) =>31-i ).map(el=><option value={el}>{el}</option>)
                                                 }
@@ -108,7 +108,7 @@ class UploadImageForm extends React.Component {
                                         </Col>
 
                                         <Col md='5'>
-                                            <Field component="select" className="form-control" name='month'>
+                                            <Field component="select" className={`form-control ${styles.selectB}`} name='month'>
                                                 <option value={1}>января</option>
                                                 <option value={2}>февраля</option>
                                                 <option value={3}>марта</option>
@@ -124,7 +124,7 @@ class UploadImageForm extends React.Component {
                                             </Field>
                                         </Col>
                                         <Col md='4'>
-                                            <Field component="select" className="form-control" name='year'>
+                                            <Field component="select" className={`form-control ${styles.selectB}`} name='year'>
                                                 {
                                                     [...Array(70)].map((el,i) =>2015-i ).map(el=><option value={el}>{el}</option>)
                                                 }

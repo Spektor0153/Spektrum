@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import StartPage from "./../StartPage/StartPageContainer";
-import {NavHead} from "./..//NavHead/NavHead"
+import NavHead from "./../NavHead/NavHead"
 import LeftMenu from "./../LeftMenu/LeftMenuContainer"
 import styles from "./mainLayer.module.css";
 import Row from "react-bootstrap/Row";
@@ -21,6 +21,11 @@ import RegistrationContainer from "./../Registration/RegistrationContainer";
 import UploadForm from "./../UploadForm/UploadForm"
 import Redirect from "react-router-dom/Redirect";
 import {socket} from "./../../socket/SocketMy";
+import MobileMenu from "./../MobileMenu/MobileMenuContainer"
+
+
+
+
 
 class MainLayer extends React.Component {
     constructor(props) {
@@ -43,7 +48,7 @@ class MainLayer extends React.Component {
 
 
     render() {
-
+  console.log(this.props)
         return (
             <BrowserRouter>
             <div>
@@ -51,11 +56,14 @@ class MainLayer extends React.Component {
                         <NavHead  user={this.props.user} isAuth={this.props.isAuth} logOut={this.props.logOutAuthThunk}></NavHead>
 
                         {this.props.isAuth===true?
+                        <>
                         <Container className={styles.mainPage_container}>
                             <Row className={styles.mainPage_row}>
+                                {!this.props.isMobile?
                                 <Col md={3}>
                                     <LeftMenu></LeftMenu>
                                 </Col>
+                                :''}
                                 <Col md={9}>
                                             <Switch>
                                                 <Route exact path="/"
@@ -79,7 +87,13 @@ class MainLayer extends React.Component {
 
                                 </Col>
                             </Row>
+
+
                         </Container>
+                        {this.props.isMobile?
+                            <MobileMenu></MobileMenu>
+                        :''}
+                        </>
                             :
 
                             <Switch>
@@ -115,7 +129,9 @@ let mapStateToProps = (state) => {
         isAuth: state.authReducer.isAuth,
         user: state.authReducer.data,
         profileLoaded: state.authReducer.profileLoaded,
-        token: state.authReducer.token
+        token: state.authReducer.token,
+        isMobile: state.settings.isMobile
+
     }
 }
 

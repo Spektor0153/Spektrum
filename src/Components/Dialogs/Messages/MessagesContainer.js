@@ -145,6 +145,7 @@ let mapStateToProps = (state) => {
         messageFriendName: state.dialogs.messageFriendName,
         messageFriendImg: state.dialogs.messageFriendImg,
         messageFriendId: state.dialogs.messageFriendId,
+        isMobile: state.settings.isMobile
     }
 }
 
@@ -174,9 +175,7 @@ let mapStateDispatch = (dispatch) => {
 }
 
 const renderField = ({ input, label, type, meta: { touched, error, warning }, ...test }) => {
-    console.log(input);
-    console.log(test)
-  return  <div className={styles.flexInput}>
+     return  <div className={styles.flexInput}>
         <FormBootstrap.Control autoComplete="off"  value={input.value} className={`${styles.inputMessage} ${error && touched ? styles.hasError : ""}`} {...input} placeholder={label} type={type}/>
     </div>
 }
@@ -194,11 +193,17 @@ let MessageForm = (props)=> {
             <Col md={9}>
                 <div className={styles.flexBlock_post}>
                     <Field component="input" type="text"  onChange={props.messageInputChange} value={props.inputText} className={styles.inputMessage}  name="message"  component={renderField} label="Напишите сообщение"  validate={[ required, badChar ]} />
+                     {props.isMobile?
+                         <Button  type="submit" variant="default"  className={styles.sendMessMob} > <span className={styles.sendMobile}> </span>  </Button>
+                     :''}
+
                 </div>
             </Col>
 
             <Col  md={3}>
+            {!props.isMobile?
                 <Button className={styles.sendMessageButton}  variant="dark" type="submit">Отправить</Button>
+                :''}
             </Col>
         </Row>
     </Form>

@@ -151,3 +151,33 @@ background-color: white;
     font-size: 14px;
     font-weight: 400;
 }
+.closeIconMob {
+    position: absolute;
+    top: 15px;
+    font-size: 25px;
+    right: 15px;
+    color: darkgray;
+}
+@media (max-width: 1000px) {
+ .photoBlock{
+     max-width: 100%;
+     flex: 0 0 50%;
+ }
+    .fon {
+        margin-bottom: 20px;
+    }
+    .photoCol {
+        height: auto;
+    }
+    .modalPhoto {
+        height: auto;
+        width: auto;
+        max-width: 100%;
+    }
+    .rigthBody {
+        padding: 0px;
+    }
+    .descriptionText {
+        margin-bottom: 0px;
+    }
+}

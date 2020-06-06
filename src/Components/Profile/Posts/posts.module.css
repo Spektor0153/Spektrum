@@ -164,3 +164,14 @@
     display: inline-block;
 }
 
+@media (max-width: 1000px) {
+    .userName {
+        font-size: 14px;
+    }
+    .datePost {
+        font-size: 11px;
+    }
+    postHeadTop_button {
+        padding-bottom: 8px;
+    }
+}

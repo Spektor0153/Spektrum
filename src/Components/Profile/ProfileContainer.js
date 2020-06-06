@@ -47,6 +47,7 @@ class ProfileContainer extends React.Component{
             <div className={styles.fon}>
                    <Container className={styles.containerProfile} fluid>
                        <Row>
+                       {!this.props.isMobile?
                            <Col md={4}>
                                <div className={styles.blockFon}>
                                     <NavLink  to={this.props.match.url+'?avatar=1'}>
@@ -73,27 +74,44 @@ class ProfileContainer extends React.Component{
                                <FriendsBlock friends={this.props.friends} followCount={this.props.profile.folowCount}></FriendsBlock>
 
                            </Col>
+                           :''}
+
                            <Col md={8}>
                                 <div className={styles.blockFon + ' ' + styles.flexblockFon }>
-                                   <div className={styles.userInfo_block}>
-                                       <p className={styles.userName}>{this.props.profile.name}</p>
-                                       <div>
-                                           {
-                                               this.props.myPage==true?
-                                                    this.props.statusOpen==true?
-                                                       <div className={styles.statusBlock}>
-                                                           <Form.Control onChange={this.props.statusTextChange} value={this.props.statusText} className={styles.inputStatus} type="text" placeholder="Изменить статус..." />
-                                                           <Button variant="success" onClick={()=>{this.props.sendStatusProfileThunk(this.props.statusText)}}>Сохранить</Button>
-                                                       </div>
-                                                    :
-                                                    <p onDoubleClick={this.props.statusInputOpen} className={styles.userStatus}>{this.props.statusText.length?this.props.statusText:'Измените статус..'}</p>
-                                                :
-                                                   this.props.statusText.length?
-                                                        <p onDoubleClick={this.props.statusInputOpen} className={styles.userStatus}>{this.props.statusText.length?this.props.statusText:''}</p>
-                                                   :<p></p>
-                                           }
+                                   <div className={`${styles.userInfo_block}`}>
+                                       <div className={`${this.props.isMobile?styles.userInfo_block_mobile:''}`}>
+                                           {this.props.isMobile?
 
-                                       </div>
+                                                 <NavLink  to={this.props.match.url+'?avatar=1'}>
+                                                    <div className={styles.imgBlockMobile} style={{backgroundImage: `url(${this.props.profile.img})`}}></div>
+                                                 </NavLink>
+
+
+                                            :''}
+
+                                           <div>
+                                               <p className={styles.userName}>{this.props.profile.name}</p>
+                                               <div>
+                                                   {
+                                                       this.props.myPage==true?
+                                                            this.props.statusOpen==true?
+                                                               <div className={styles.statusBlock}>
+                                                                   <Form.Control onChange={this.props.statusTextChange} value={this.props.statusText} className={styles.inputStatus} type="text" placeholder="Изменить статус..." />
+                                                                   <Button variant="success" onClick={()=>{this.props.sendStatusProfileThunk(this.props.statusText)}}>Сохранить</Button>
+                                                               </div>
+                                                            :
+                                                            <p onDoubleClick={this.props.statusInputOpen} className={styles.userStatus}>{this.props.statusText.length?this.props.statusText:'Измените статус..'}</p>
+                                                        :
+                                                           this.props.statusText.length?
+                                                                <p onDoubleClick={this.props.statusInputOpen} className={styles.userStatus}>{this.props.statusText.length?this.props.statusText:''}</p>
+                                                           :<p></p>
+                                                   }
+
+                                               </div>
+                                           </div>
+
+                                        </div>
+
 
                                        <span className={styles.razdelitel}></span>
                                        {this.props.profile.dateb||this.props.profile.school||this.props.profile.about?
@@ -101,20 +119,20 @@ class ProfileContainer extends React.Component{
 
                                                {this.props.profile.dateb?
                                                    <Row className={styles.listRow}>
-                                                       <Col sm={4}><span className={styles.listHead}>День рождения:</span></Col>
-                                                       <Col sm={8}><span className={styles.listText}>{this.props.profile.dateb}</span></Col>
+                                                       <Col sm={4} className="col"><span className={styles.listHead}>День рождения:</span></Col>
+                                                       <Col sm={8} className="col"><span className={styles.listText}>{this.props.profile.dateb}</span></Col>
                                                    </Row>
                                                :''}
                                                {this.props.profile.school?
                                                <Row className={styles.listRow}>
-                                                   <Col sm={4}><span className={styles.listHead}>Место работы:</span></Col>
-                                                   <Col sm={8}><span className={styles.listText}>{this.props.profile.school}</span></Col>
+                                                   <Col sm={4} className="col"><span className={styles.listHead}>Место работы:</span></Col>
+                                                   <Col sm={8} className="col"><span className={styles.listText}>{this.props.profile.school}</span></Col>
                                                </Row>
                                                :''}
                                                 {this.props.profile.about?
                                                <Row className={styles.listRow}>
-                                                   <Col sm={4}><span className={styles.listHead}>О себе:</span></Col>
-                                                   <Col sm={8}><span className={styles.listText}>{this.props.profile.about}</span></Col>
+                                                   <Col sm={4} className="col"><span className={styles.listHead}>О себе:</span></Col>
+                                                   <Col sm={8} className="col"><span className={styles.listText}>{this.props.profile.about}</span></Col>
                                                </Row>
                                                :''}
 
@@ -123,23 +141,42 @@ class ProfileContainer extends React.Component{
                                            :''}
                                    </div>
                                     <div className={styles.userInfo_counteri}>
-                                        <NavLink to="/friends">
+                                        <NavLink className={styles.navLink_counteri} to="/friends">
                                             <p className={styles.counterNumber}>{this.props.profile.folowCount}</p>
                                             <p className={styles.counterText}>Подписок</p>
                                         </NavLink>
-                                        <NavLink to="/friends">
+                                        <NavLink className={styles.navLink_counteri} to="/friends">
                                             <p className={styles.counterNumber}>{this.props.profile.folowerCount}</p>
                                             <p className={styles.counterText}>Подписчиков</p>
                                         </NavLink>
-                                        <NavLink to="/photos">
+                                        <div className={styles.navLink_counteri} >
                                             <p className={styles.counterNumber}>{this.props.profile.photosCount}</p>
                                             <p className={styles.counterText}>Фотографий</p>
-                                        </NavLink>
-                                        <NavLink to="/photos">
+                                        </div>
+                                        <div className={styles.navLink_counteri} >
                                             <p className={styles.counterNumber}>{this.props.profile.postsCount}</p>
                                             <p className={styles.counterText}>Постов</p>
-                                        </NavLink>
+                                        </div>
                                     </div>
+
+                                     {!this.props.myPage&&this.props.isMobile?
+                                     <>
+                                     <hr/>
+                                       <div className={styles.button_block}>
+                                          <NavLink className={styles.messageButton+' btn btn-primary'}  to={`/dialogs/${this.props.profile.id_user}`} >Сообщение</NavLink>
+                                             {this.props.profile.follow?<>
+                                                <Dropdown  className={styles.followBlock}  >
+                                                    <DropdownButton className={styles.unFollowButton} variant="success" title="Вы подписаны">
+                                                       <Dropdown.Item onClick={()=>{this.props.unFollowFriendProfileThunk(this.props.profile.id_user)}} >Отписаться</Dropdown.Item>
+                                                    </DropdownButton>
+                                                </Dropdown>
+                                                </>
+                                             :
+                                                <Button className={styles.followButton} onClick={()=>{this.props.followFriendProfileThunk(this.props.profile.id_user)}}>Подписаться</Button>
+                                             }
+                                       </div>
+                                       </>
+                                     :''}
 
 
                                 </div>
@@ -151,6 +188,7 @@ class ProfileContainer extends React.Component{
                                         windowLoadOpen={this.props.windowLoadOpen}
                                         openAddPhotoWindow={this.props.openAddPhotoWindow}
                                         myPage={this.props.myPage}
+                                        isMobile={this.props.isMobile}
                                     ></Photos>
                                 :''}
                                {this.props.myPage?
@@ -196,7 +234,8 @@ let mapStateToProps = (state) => {
         statusText: state.profile.statusText,
         statusOpen: state.profile.statusOpen,
         currentText: state.profile.currentText,
-        windowLoadOpen: state.photos.windowLoadOpen
+        windowLoadOpen: state.photos.windowLoadOpen,
+        isMobile: state.settings.isMobile
     }
 }
 

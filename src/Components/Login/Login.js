@@ -75,7 +75,7 @@ class Login extends React.Component {
                     <Card.Header className={styles.cardHeader} as="h5">
                         <Nav variant="tabs" defaultActiveKey="/">
                             <Nav.Item className={styles.navItem}>
-                                <Nav.Link href="/">Авторизация</Nav.Link>
+                                <Nav.Link lassName={styles.authLink} href="/">Авторизация</Nav.Link>
                             </Nav.Item>
                             <Nav.Item className={styles.navItem}>
                                 <Nav.Link  className={styles.registrationLink} href="/registration">Регистрация</Nav.Link>

@@ -16,11 +16,11 @@ class StartPage extends React.Component {
             <div>
                 <Container className={styles.startPage_container}>
                     <Row className={styles.startPage_row}>
-                        <Col md={8}>
+                        <Col  md={{span:8, order: 'first'}}  xs={{order: 'last'}}>
                             <div className={styles.travolta_container}>
                                 <p className={styles.travolta_zag}>Не можешь найти <span className={styles.dashed}>друзей?</span></p>
                                 <p className={styles.travolta_text}>Так они уже здесь... Регистрируйся...</p>
-                            <img src="/gif-maker.gif" alt=""/>
+                            <img className={styles.travolta_img} src="/gif-maker.gif" alt=""/>
                             </div>
                         </Col>
                         <Col md={4}>

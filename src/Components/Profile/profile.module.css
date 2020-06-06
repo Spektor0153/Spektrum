@@ -146,3 +146,90 @@ width: 100%;
 background-color: #e7e7e7;
 
 }
+
+/*mobile*/
+.imgBlockMobile {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+.userInfo_block_mobile {
+    display: flex;
+    padding-bottom: 15px;
+}
+
+
+
+@media (max-width: 1000px) {
+    .blockFon {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .userName {
+        font-size: 17px;
+        line-height: 20px;
+        margin-bottom: 0px;
+    }
+    .userStatus {
+        font-size: 13px;
+        color: #606060;
+        margin-bottom: 0px;
+    }
+    .infoUserContainer {
+        padding: 0px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    .userInfo_counteri {
+        flex-wrap: wrap;
+    }
+    .navLink_counteri {
+        flex: 1 1 50%;
+        margin-bottom: 15px;
+    }
+    .navLink_counteri:nth-child(3), .navLink_counteri:nth-child(4) {
+        margin-bottom: 0px;
+    }
+    .counterNumber {
+        font-size: 16px;
+        line-height: 16px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+    .counterText {
+        line-height: 16px;
+        font-size: 12px;
+    }
+    .button_block {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .messageButton {
+        font-size: 14px;
+        height: 35px;
+        margin-bottom: 0px;
+        margin-right: 4%;
+        flex: 1 1 45%;
+    }
+    .unFollowButton button {
+        font-size: 14px;
+        height: 35px;
+    }
+    .followButton {
+        font-size: 14px;
+        height: 35px;
+        flex: 1 1 45%;
+    }
+    .followBlock {
+        flex: 1 1 45%;
+    }
+    .button_block {
+        margin-top: 15px;
+    }
+}

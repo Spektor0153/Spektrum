@@ -31,3 +31,16 @@
 .card {
     box-shadow: 2px 2px 9px 1px #d7d8db, 0px 0px 3px 1px #e3e4e8;
 }
+
+
+@media (max-width: 1000px) {
+
+
+    .navItem {
+        font-size: 14px;
+
+    }
+    .navItem a {
+        border-bottom: 1px solid #e8e8e8 !important;
+    }
+}

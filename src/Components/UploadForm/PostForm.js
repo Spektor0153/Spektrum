@@ -70,7 +70,11 @@ class PostForm extends React.Component {
                                 <div className={styles.imgRound} style={{backgroundImage: `url(${this.props.profileImg})`}}></div>
                                 <Field component="input" type="text" className={styles.inputMessage} name="post"  label="Что у вас нового?"   component={renderField}   validate={[ required, badChar ]} />
                                 <FontAwesomeIcon className={styles.photoAddIcon} onClick={this.onToogleImageUpload} icon={faCamera}></FontAwesomeIcon>
+                                {this.props.isMobile?
+                                <Button  type="submit" variant="default"  className={styles.sendPostButtonMob} disabled={this.props.submitting}> <span className={styles.sendMobile}> </span>  </Button>
+                                :
                                 <Button className={styles.sendPostButton} variant="dark" type="submit" disabled={this.props.submitting}>Опубликовать</Button>
+                                }
                             </div>
 
                         </Col>

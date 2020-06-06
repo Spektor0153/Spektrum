@@ -2,7 +2,7 @@
     background-color: white;
 }
 .mainPage_container {
-    padding-top: 90px;
+    padding-top: 80px;
     padding-bottom: 30px;
     min-height: 100vh;
     display: flex;
@@ -12,4 +12,15 @@
 }
 .mainPage_row {
     flex: 1 1 auto;
+}
+
+@media (max-width: 1000px) {
+/*@media screen and (max-width: 1000px) { */
+	.mainPage_container {
+        padding-top: 75px;
+        padding-bottom: 50px;
+        min-height: auto;
+	    padding-left: 15px;
+	    padding-right: 15px;
+	}
 }

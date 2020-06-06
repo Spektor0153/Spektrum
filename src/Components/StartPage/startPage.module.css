@@ -45,3 +45,46 @@
     border-bottom: 3px dashed #343a40;
     padding-bottom: 1px;
 }
+
+@media (max-width: 1000px) {
+
+    .startPage_container {
+        padding-left: 15px;
+        padding-right: 15px;
+        height: auto;
+    }
+
+    .travolta_zag {
+        font-size: 30px;
+        line-height: 37px;
+        margin-top: 5px;
+    }
+    .travolta_text {
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+    .travolta_text {
+        font-size: 22px;
+        line-height: 29px;
+    }
+    .travolta_img {
+        max-width: 100%;
+    }
+    .form_container {
+        display: block;
+        height: auto;
+        margin-bottom: 40px;
+        margin-top: 80px;
+    }
+    .headReg {
+        font-size: 16px;
+        padding-left: 20px;
+    }
+    .cardBody {
+        padding: 5px;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+
+}

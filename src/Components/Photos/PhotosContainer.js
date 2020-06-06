@@ -11,7 +11,8 @@ export default class PhotosContainer extends React.Component {
     }
     render() {
         console.log(this.props)
-
+        let maxCount = this.props.isMobile?2:4;
+        
         return <div className={styles.fon}>
             <div className={styles.photoHead}>
                 <p className={styles.photoHeadZag}>Фотографии {this.props.photos.length}</p>
@@ -22,8 +23,9 @@ export default class PhotosContainer extends React.Component {
             <div className={styles.containerPhotos}>
 
                     {
+
                         this.props.photos.map((photo,i)=>{
-                            if (i<4) {
+                            if (i<maxCount) {
                                 return <div key={i} className={styles.photoBlock}>
                                     <NavLink to={this.props.match.url+'?photo='+photo.id}>
                                         <div className={styles.photo} style={{backgroundImage: `url(${photo.img})`}}></div>

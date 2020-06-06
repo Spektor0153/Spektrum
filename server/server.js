@@ -17,15 +17,17 @@ const fs = require('fs');
 const path = require('path');
 const passwordHash = require('password-hash');
 
-const host = '192.168.1.101'
+const host = '151.248.114.72'
 const port = 3001
+//var port = normalizePort(process.env.PORT || '3001');
+app.set('port', port);
 
 const tokenKey = '1a2b-3c4d-5e6f-7g8h'
 
 
 
 var corsOptions = {
-  origin: 'http://192.168.1.101',
+  origin: 'http://151.248.114.72',
   optionsSuccessStatus: 200
 }
 
@@ -42,7 +44,7 @@ var router = AsyncRouter();
 
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-      callback(null, './../public/uploadPhoto');
+      callback(null, path.join(__dirname, '/../public/uploadPhoto'));
   },
   filename: function (req, file, callback) {
     callback(null, Date.now() + path.parse(file.originalname).name +path.extname(file.originalname) );
@@ -56,28 +58,38 @@ var connection =  mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '0153',
-  database : 'socialNetwork'
+  database : 'socialnetwork'
 });
 
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
+
+  console.log('connected as id ' + connection.threadId);
+});
 
 let users = [];
 let updateUserForAuth =  () => {
   //const rows = await connection.promise().query(`SELECT * from user`);
   connection.query("SELECT * from user", function(err, results) {
-  //console.log(rows)
-    users=[...results];
+    console.log(results)
+    if (results) {
+      users=[...results];
+    }
     console.log('updateUserForAuth')
   });
 }
 
 updateUserForAuth();
-
+/*
 connection.query("SELECT * from user", function(err, results) {
   users=[...results];
 });
-
+*/
 app.get('/', routes.index);
-app.get('/registration', routes.index);
+//app.get('*', routes.index);
 
 io.on("connection", socket => {
   console.log("New client connected= " + socket.id);
@@ -147,7 +159,7 @@ app.use((req, res, next) => {
       console.log('req.user!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
      // console.log(req.user);
       const rows = await connection.promise().query(`SELECT id, id_user, name, img, status, DATE_FORMAT(dateb, '%d %M %Y') as dateb, 
-        (select SUM(countNewM) from (select id_room, id_user from roomsuser where id_user=${req.user.id}) r inner join (
+        (select SUM(countNewM) from (select id_room, id_user from roomsUser where id_user=${req.user.id}) r inner join (
         select id_room, count(*) as countNewM from messages where id_user!=${req.user.id} and read_message=0 group by id_room) m on r.id_room=m.id_room) as countNewM,
         school, about from profiles p where id_user=${req.user.id}`);
       res.send(rows[0][0]).status(201);
@@ -200,7 +212,7 @@ app.get('/posts', async (req, res) => {
   app.post('/sendStatus', async (req, res) => {
     if (req.user) {
       try {
-        const rows = await connection.promise().query(`update socialNetwork.profiles  set status ='${req.body.text}' where id_user=${req.user.id};`);
+        const rows = await connection.promise().query(`update profiles  set status ='${req.body.text}' where id_user=${req.user.id};`);
         //console.log(rows)
         res.send(rows[0]).status(201);
       } catch (e) {
@@ -301,7 +313,7 @@ app.get('/friendId', async (req, res) => {
           from profiles p where id_user=${req.query.id_user} `);
         const rows_friends = await connection.promise().query(`select pr.id_user, pr.name, pr.img from (SELECT id, id_user, id_friend FROM friends where id_user=${req.query.id_user} limit 10) fr inner join profiles pr on fr.id_friend=pr.id_user`);
         const rows_posts = await connection.promise().query(`SELECT id, id_user, text, dateCreate as dateCreateFull, (select count(id) from likes l where p.id=l.id_post) as likes, (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate from posts p where id_user=${req.query.id_user}   order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.query.id_user} ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.query.id_user} ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
         const rows_photos = await connection.promise().query(`SELECT id, id_user, text, img, dateCreate as dateCreateFull, DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate from photos where id_user=${req.query.id_user}   order  by  dateCreateFull desc`);
 
 
@@ -388,8 +400,8 @@ app.get('/messages', async (req, res) => {
         console.log(rows_insert_room)
         console.log(rows_insert_room[0].insertId)
         id_room=rows_insert_room[0].insertId
-        const rows_insert_room_u1 = await connection.promise().query(`INSERT INTO roomsuser (id_room, id_user) VALUES (${id_room}, ${req.user.id})`);
-        const rows_insert_room_u2 = await connection.promise().query(`INSERT INTO roomsuser (id_room, id_user) VALUES (${id_room}, ${req.query.userId})`);
+        const rows_insert_room_u1 = await connection.promise().query(`INSERT INTO roomsUser (id_room, id_user) VALUES (${id_room}, ${req.user.id})`);
+        const rows_insert_room_u2 = await connection.promise().query(`INSERT INTO roomsUser (id_room, id_user) VALUES (${id_room}, ${req.query.userId})`);
 
       } else {
         id_room=rows_room[0][0].id_room
@@ -399,7 +411,7 @@ app.get('/messages', async (req, res) => {
       const rows_message = await connection.promise().query(`select id, id_room, id_user, message, DATE_FORMAT(datesend, '%d %M %Y  в %H:%i') as datesend, datesend as datefull, read_message, (case id_user when ${req.user.id} then 0 else 1 end) as incomingMessage from messages where id_room=${id_room} order by datefull asc`);
       const rows_profile = await connection.promise().query(`select * from profiles where id_user=${req.query.userId} `);
       const rows_read = await connection.promise().query(` update messages set read_message=1 where id_room=${id_room} and id_user!=${req.user.id}`);
-      const rows_new_message = await connection.promise().query(`select SUM(countNewM)  as countNewM from (select id_room, id_user from roomsuser where id_user=${req.user.id}) r inner join (
+      const rows_new_message = await connection.promise().query(`select SUM(countNewM)  as countNewM from (select id_room, id_user from roomsUser where id_user=${req.user.id}) r inner join (
         select id_room, count(*) as countNewM from messages where id_user!=${req.user.id} and read_message=0 group by id_room) m on r.id_room=m.id_room `);
 
       res.send({messages: rows_message[0], profile: rows_profile[0][0], id_room: id_room, countNewM: rows_new_message[0][0].countNewM}).status(201);
@@ -468,11 +480,11 @@ app.post('/sendMessage', async (req, res) => {
     console.log(req.body)
     if (req.user) {
       try {
-        console.log(`insert into socialNetwork.likes (id_post, id_user, dateCreate) values (${req.body.id_post}, ${req.user.id}, NOW())`)
-        const rows_like = await connection.promise().query(`insert into socialNetwork.likes (id_post, id_user, dateCreate) values (${req.body.id_post}, ${req.user.id}, NOW())`);
+        console.log(`insert into likes (id_post, id_user, dateCreate) values (${req.body.id_post}, ${req.user.id}, NOW())`)
+        const rows_like = await connection.promise().query(`insert into likes (id_post, id_user, dateCreate) values (${req.body.id_post}, ${req.user.id}, NOW())`);
         //console.log(rows_like)
         const rows_posts = await connection.promise().query(`SELECT id, id_user, text, dateCreate as dateCreateFull, (select count(id) from likes l where p.id=l.id_post) as likes, (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate from posts p where id_user=${req.body.id_user}   order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.body.id_user} ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.body.id_user} ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
         for (let i=0; i<rows_posts[0].length; i++) {
           rows_posts[0][i].likeUsers=[]
           for (let j=0; j<rows_posts_likes[0].length; j++) {
@@ -498,11 +510,11 @@ app.post('/sendMessage', async (req, res) => {
     console.log(req.body)
     if (req.user) {
       try {
-        console.log(`delete from socialNetwork.likes where id_post=${req.body.id_post} and id_user=${req.user.id} `)
-        const rows_like = await connection.promise().query(`delete from socialNetwork.likes where id_post=${req.body.id_post} and id_user=${req.user.id} `);
+        console.log(`delete from likes where id_post=${req.body.id_post} and id_user=${req.user.id} `)
+        const rows_like = await connection.promise().query(`delete from likes where id_post=${req.body.id_post} and id_user=${req.user.id} `);
         console.log(rows_like)
         const rows_posts = await connection.promise().query(`SELECT id, id_user, text, dateCreate as dateCreateFull, (select count(id) from likes l where p.id=l.id_post) as likes, (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate from posts p where id_user=${req.body.id_user}   order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.body.id_user} ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.body.id_user} ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
         for (let i=0; i<rows_posts[0].length; i++) {
           rows_posts[0][i].likeUsers=[]
           for (let j=0; j<rows_posts_likes[0].length; j++) {
@@ -527,10 +539,10 @@ app.post('/sendMessage', async (req, res) => {
 
   app.post('/registration', upload.single('imageFile'), async (req, res) => {
     console.log('registration')
-   console.log(req.body)
+    console.log(req.body)
     let filedata = req.file;
     console.log(filedata);
-console.log(`insert into socialnetwork.user (login,password,passwordhash,datecreate) values ('${req.body.login}','${req.body.password}','${passwordHash.generate(req.body.password)}',NOW()) `)
+    console.log(`insert into user (login,password,passwordhash,datecreate) values ('${req.body.login}','${req.body.password}','${passwordHash.generate(req.body.password)}',NOW()) `)
     const rows_user = await connection.promise().query(`insert into user (login,password,passwordhash,datecreate) values ('${req.body.login}','${req.body.password}','${passwordHash.generate(req.body.password)}',NOW()) `);
     const rows_profile = await connection.promise().query(`insert into profiles (id_user,name,img,dateb,school,about) values (${rows_user[0].insertId},   '${req.body.surname} ${req.body.name}', '/uploadPhoto/${filedata.filename}',  ${req.body.year&&req.body.month&&req.body.day?`'${req.body.year}-${req.body.month}-${req.body.day}'`:`NULL`}  ,    ${req.body.school?`'${req.body.school}'`:`NULL`},   ${req.body.about?`'${req.body.about}'`:`NULL`}) `);
     console.log(rows_user[0]);
@@ -544,7 +556,7 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
         token: jwt.sign({ id: rows_user[0].insertId }, tokenKey)
       })
 
-     // res.send({rows_profile: rows_profile[0]}).status(201);
+      res.send({rows_profile: rows_profile[0]}).status(201);
     }
   });
 
@@ -554,6 +566,7 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
   app.post('/sendPosts', upload.single('imageFile'), async (req, res) => {
     console.log('sendPosts   -')
     console.log(req.body)
+    console.log(req.user)
     if (req.user) {
       try {
         console.log('filedata=');
@@ -569,7 +582,7 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
         //res.send(rows_posts[0]).status(201);
 
         const rows_posts = await connection.promise().query(`SELECT id, id_user, text, dateCreate as dateCreateFull, (select count(id) from likes l where p.id=l.id_post) as likes, (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate from posts p where id_user=${req.user.id}   order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.user.id} ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.user.id} ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
 
 
         for (let i=0; i<rows_posts[0].length; i++) {
@@ -600,11 +613,11 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
       res.send(rows[0]).status(201);*/
 
       const rows_posts = await connection.promise().query(`SELECT p.id, p.id_user, text, dateCreate as dateCreateFull, 
-          (select count(id) from socialnetwork.likes l where p.id=l.id_post) as likes, 
-          (select id_user from socialnetwork.likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, 
+          (select count(id) from likes l where p.id=l.id_post) as likes, 
+          (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, 
           DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate, pr.name, pr.img
-               from socialnetwork.posts p inner join socialnetwork.profiles pr on p.id_user=pr.id_user  order  by  dateCreateFull desc`);
-      const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+               from posts p inner join profiles pr on p.id_user=pr.id_user  order  by  dateCreateFull desc`);
+      const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
 
 
       for (let i=0; i<rows_posts[0].length; i++) {
@@ -627,13 +640,13 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
     console.log(req.body)
     if (req.user) {
       try {
-        const rows_like = await connection.promise().query(`insert into socialNetwork.likes (id_post, id_user, dateCreate) values (${req.body.id_post}, ${req.user.id}, NOW())`);
+        const rows_like = await connection.promise().query(`insert into likes (id_post, id_user, dateCreate) values (${req.body.id_post}, ${req.user.id}, NOW())`);
         const rows_posts = await connection.promise().query(`SELECT p.id, p.id_user, text, dateCreate as dateCreateFull, 
-          (select count(id) from socialnetwork.likes l where p.id=l.id_post) as likes, 
-          (select id_user from socialnetwork.likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, 
+          (select count(id) from likes l where p.id=l.id_post) as likes, 
+          (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, 
           DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate, pr.name, pr.img
-               from socialnetwork.posts p inner join socialnetwork.profiles pr on p.id_user=pr.id_user  order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+               from posts p inner join profiles pr on p.id_user=pr.id_user  order  by  dateCreateFull desc`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
 
 
         for (let i=0; i<rows_posts[0].length; i++) {
@@ -661,13 +674,13 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
     console.log(req.body)
     if (req.user) {
       try {
-        const rows_like = await connection.promise().query(`delete from socialNetwork.likes where id_post=${req.body.id_post} and id_user=${req.user.id} `);
+        const rows_like = await connection.promise().query(`delete from likes where id_post=${req.body.id_post} and id_user=${req.user.id} `);
         const rows_posts = await connection.promise().query(`SELECT p.id, p.id_user, text, dateCreate as dateCreateFull, 
-          (select count(id) from socialnetwork.likes l where p.id=l.id_post) as likes, 
-          (select id_user from socialnetwork.likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, 
+          (select count(id) from likes l where p.id=l.id_post) as likes, 
+          (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, 
           DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate, pr.name, pr.img
-               from socialnetwork.posts p inner join socialnetwork.profiles pr on p.id_user=pr.id_user  order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+               from posts p inner join profiles pr on p.id_user=pr.id_user  order  by  dateCreateFull desc`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
 
 
         for (let i=0; i<rows_posts[0].length; i++) {
@@ -700,7 +713,7 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
         const rows = await connection.promise().query(`delete from posts where id=${req.body.id}`);
 
         const rows_posts = await connection.promise().query(`SELECT id, id_user, text, dateCreate as dateCreateFull, (select count(id) from likes l where p.id=l.id_post) as likes, (select id_user from likes l where p.id=l.id_post and l.id_user=${req.user.id}) as myLike, DATE_FORMAT(dateCreate, '%d %M %Y  в %H:%i') as dateCreate from posts p where id_user=${req.user.id}   order  by  dateCreateFull desc`);
-        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.user.id} ) po inner join  socialNetwork.likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
+        const rows_posts_likes = await connection.promise().query(`select po.id, l.id as id_like, l.id_user, p.name, p.img from (select id from posts where id_user=${req.user.id} ) po inner join  likes l  on po.id=l.id_post inner join profiles p on l.id_user=p.id_user order by id`);
 
 
         for (let i=0; i<rows_posts[0].length; i++) {
@@ -713,7 +726,7 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
         }
 
         res.send({posts: rows_posts[0]}).status(201);
-        res.send(rows_posts[0]).status(201);
+        //res.send(rows_posts[0]).status(201);
       } catch (e) {
         console.log(e)
         res.status(401).json({ message: 'SQL error' })
@@ -798,7 +811,7 @@ console.log(`insert into socialnetwork.user (login,password,passwordhash,datecre
 
 });
 
-
-
-server.listen(port, host, () => console.log(`Server listens http://${host} ${port}`))
+//server.listen(3001, '151.248.114.72');
+server.listen(port, host, () => console.log(`Server listens http://${host} ${port}`) );
+//server.listen(port, host, () => console.log(`Server listens http://${host} ${port}`))
 

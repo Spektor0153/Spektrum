@@ -50,7 +50,7 @@ class Posts extends React.Component {
                 <div className={styles.fon}>
                     <div>
 
-                        <PostForm profileImg={this.props.profile.img} sendPostThunk={this.props.sendPostThunk}></PostForm>
+                        <PostForm profileImg={this.props.profile.img} sendPostThunk={this.props.sendPostThunk} isMobile={this.props.isMobile}></PostForm>
 
 
                     </div>
@@ -124,7 +124,8 @@ class Posts extends React.Component {
 let mapStateToProps = (state) => {
     return {
         isLoad: state.posts.isLoad,
-        inputText: state.posts.inputText
+        inputText: state.posts.inputText,
+        isMobile: state.settings.isMobile
     }
 }
 

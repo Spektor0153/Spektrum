@@ -15,6 +15,8 @@ import {connect} from "react-redux";
 import Redirect from "react-router-dom/Redirect";
 import {withRouter} from 'react-router-dom'
 import Carousel from "react-bootstrap/Carousel";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
 class PhotosContainer extends React.Component {
     constructor(props) {
@@ -67,7 +69,7 @@ class PhotosContainer extends React.Component {
 
                         <Container fluid={true} className={styles.container}>
                             <Row className={styles.row}>
-                                <Col md={9} className={styles.photoCol}>
+                                <Col md={{ span: 9, order: 'first' }}  xs={{ order: 'last' }} className={styles.photoCol}>
                                     <Carousel interval={null} activeIndex={this.props.currentImgNumber} onSelect={(...event)=>{this.imageChange(...event)}}>
                                         {
                                             this.props.photos.map((photo, i)=>{
@@ -82,7 +84,7 @@ class PhotosContainer extends React.Component {
                                         }
                                     </Carousel>
                                 </Col>
-                                <Col md={3} className={styles.rightCol}>
+                                <Col md={3}  className={styles.rightCol}>
                                     <div className={styles.rightColBlock}>
                                         <div className={styles.rigthHeader}>
                                             <div className={styles.authorImg} style={{backgroundImage: `url(${this.props.profile.img})`}}></div>
@@ -95,8 +97,12 @@ class PhotosContainer extends React.Component {
                                             <p className={styles.descriptionText}>{this.props.currentText}</p>
 
                                         </div>
-                                        <div className={styles.windowCross} onClick={()=>{this.closeWindowHistory(this.props.location.pathname)}}>
-                                        </div>
+                                        {this.props.isMobile?
+                                           <FontAwesomeIcon onClick={()=>{this.closeWindowHistory(this.props.location.pathname)}} className={styles.closeIconMob} icon={faTimesCircle}></FontAwesomeIcon>
+                                        :
+                                            <div className={styles.windowCross} onClick={()=>{this.closeWindowHistory(this.props.location.pathname)}}> </div>
+                                        }
+
 
                                     </div>
                                 </Col>
@@ -127,7 +133,8 @@ let mapStateToProps = (state) => {
         currentImgNumber: state.photos.currentImgNumber,
         currentDate: state.photos.currentDate,
         currentText: state.photos.currentText,
-        profile: state.profile.profile
+        profile: state.profile.profile,
+        isMobile: state.settings.isMobile
     }
 }
 

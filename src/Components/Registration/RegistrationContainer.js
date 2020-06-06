@@ -51,7 +51,7 @@ class Registration extends React.Component {
 
                                 <Card className={styles.card}>
                                     <Card.Header className={styles.headReg} as="h5">Регистрация пользователя</Card.Header>
-                                    <Card.Body>
+                                    <Card.Body  className={styles.cardBody}>
 
                                         <UploadImageForm registrationThunk={this.props.registrationThunk}></UploadImageForm>
 

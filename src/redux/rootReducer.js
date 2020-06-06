@@ -9,6 +9,7 @@ import {dialogsReducer} from "./../redux/dialogsReducer";
 import {newsReducer} from "./../redux/newsReducer";
 import {photosWindowReducer} from "./../redux/photosWindowReducer";
 import {leftMenuReducer} from "./../redux/leftMenuReducer"
+import {settingsReducer} from "./../redux/settingsReducer"
 /**/
 import { reducer as formReducer } from 'redux-form';
 
@@ -21,7 +22,8 @@ export const  rootReducer = combineReducers({
     dialogs: dialogsReducer,
     news: newsReducer,
     photos: photosWindowReducer,
-    leftMenu: leftMenuReducer
+    leftMenu: leftMenuReducer,
+    settings: settingsReducer
 });
 
 
