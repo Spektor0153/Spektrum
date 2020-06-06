@@ -9,6 +9,8 @@ Social Network
 <div>	
 Demo: <a href="http://smm-dance.ru:3000">Link to demo</a>
 </div>
+
+<p>	</p>
 <div>	
 	Use: 
 	<ul>
